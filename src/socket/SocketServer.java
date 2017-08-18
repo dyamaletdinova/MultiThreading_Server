@@ -16,9 +16,9 @@ public class SocketServer {
 	
 	@SuppressWarnings("unused")
 	public void runServer() throws InterruptedException{
-		//sets the server socket
+
 		try {
-			serverSocket = new ServerSocket(portNum);//creates a new socket that runs on our port
+			serverSocket = new ServerSocket(portNum);//creates a new socket that runs on these port
 		} catch (IOException e) {
 			System.out.println("Something went wrong: \n" + e.getMessage());
 		}
@@ -29,28 +29,25 @@ public class SocketServer {
 		while (true){//always will look for connections
 			Socket clientSocket = null;
 			try {
+				
 				clientSocket = serverSocket.accept();
 				//new thread is created here
 	
 			} catch (IOException e) {
 				if (!true){
-					System.out.println("Can't accept the client connection + \n" + e.getMessage());
-					System.out.println("Server Stopped.") ;
+					System.out.println("Server Stopped. Can't accept the client connection") ;
 					return;
 				}
-				throw new RuntimeException("Error accepting client connection", e);
+				throw new RuntimeException("Error accepting client's connection", e);
 			}
 			//processingDelay(1000);
 			new Thread(new WorkerRunnable(clientSocket)).start();
-			System.out.println("\n new thread is created \n");
-			
+			System.out.println("\n new thread is created \n");	
 		}
 	}
 	
 	public static void processingDelay(int msec) throws InterruptedException {
 		System.out.println("----------------Sleep for " + msec);
 		Thread.sleep(msec);
-	}
-	
-	 
+	} 
 }
