@@ -20,19 +20,17 @@ public class SocketServer {
 		try {
 			serverSocket = new ServerSocket(portNum);//creates a new socket that runs on these port
 		} catch (IOException e) {
-			System.out.println("Something went wrong: \n" + e.getMessage());
+			System.out.println("The server with port " + portNum + " cannot be created");
 		}
 		
 		//to offer a multi-threaded env. - each time we accept the connection from a client, we want to put it in the different thread 
-		//by creating a new socket
-		//in this example i will accept every connection 
-		while (true){//always will look for connections
+		while (true){
+			//always will look for connections
 			Socket clientSocket = null;
+			
 			try {
-				
-				clientSocket = serverSocket.accept();
-				//new thread is created here
-	
+				System.out.println("Server waiting for incoming messages");
+				clientSocket = serverSocket.accept();	
 			} catch (IOException e) {
 				if (!true){
 					System.out.println("Server Stopped. Can't accept the client connection") ;
@@ -40,14 +38,8 @@ public class SocketServer {
 				}
 				throw new RuntimeException("Error accepting client's connection", e);
 			}
-			//processingDelay(1000);
+			//create a new thread for each incoming request and pass it 'worker runnable' to handle the processing
 			new Thread(new WorkerRunnable(clientSocket)).start();
-			System.out.println("\n new thread is created \n");	
 		}
-	}
-	
-	public static void processingDelay(int msec) throws InterruptedException {
-		System.out.println("----------------Sleep for " + msec);
-		Thread.sleep(msec);
 	} 
 }

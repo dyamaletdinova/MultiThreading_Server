@@ -25,43 +25,31 @@ public class Interest {
 	
 	public Interest(){}
 	
-	/**
-	 * @return the principal
-	 */
+/*
 	public double getPrincipal() {
 		return principal;
 	}
-	/**
-	 * @param principal the principal to set
-	 */
+
 	public void setPrincipal(double principal) {
 		this.principal = principal;
 	}
-	/**
-	 * @return the rate
-	 */
+
 	public double getRate() {
 		return rate;
 	}
-	/**
-	 * @param rate the rate to set
-	 */
+
 	public void setRate(double rate) {
 		this.rate = rate;
 	}
-	/**
-	 * @return the interest
-	 */
+
+
+
+	public void setInterest(double interest) {
+		this.interest = interest;
+	}*/
 	public double getInterest() {
 		return interest;
 	}
-	/**
-	 * @param interest the interest to set
-	 */
-	public void setInterest(double interest) {
-		this.interest = interest;
-	}
-	
 	/* Do the computations. */
 	// Compute value of investment after one year, with interest.
 	//rate is provided by the client
